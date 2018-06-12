@@ -1,0 +1,4 @@
+jedi==0.12.0
+parso==0.2.1
+psycopg2==2.7.4
+pyreadline==2.1
