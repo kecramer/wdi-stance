@@ -11,9 +11,10 @@
     </head>
     <body>
         <header>
-            <h1><a href="#">Stance</a></h1>
+            <h1><a href="{% url 'home' %}">Stance</a></h1>
             <a href="#">About</a>
-            <a href="#">Sign Up/Login</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
         </header>
 
         <main>
