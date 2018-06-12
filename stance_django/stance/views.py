@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 def home(request):
     return render(request, 'stance/home.html')
 
-def login(request):
+def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
         raw_password = request.POST['password']
@@ -19,7 +19,7 @@ def login(request):
         form = LoginForm()
     return render(request, 'stance/login.html', {'form': form})
 
-def signup(request):
+def signup_user(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -28,7 +28,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('stance/home.html')
     else:
         form = UserCreationForm()
     return render(request, 'stance/signup.html', {'form': form})
