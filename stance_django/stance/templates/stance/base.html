@@ -11,14 +11,22 @@
     </head>
     <body>
         <header>
-            <h1><a href="#">Stance</a></h1>s
+            <h1><a href="#">Stance</a></h1>
+            <a href="#">About</a>
+            <a href="#">Sign Up/Login</a> 
         </header>
 
         <main>
+            {% include "graph.html" %}
         </main>
 
         <aside>
+            {% block aside %}
+            {% endblock %}
         </aside>
+
+        <footer> Stance &copy; 2018, all rights reserved
+        </footer>
 
     </body>
 
