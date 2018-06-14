@@ -65,3 +65,6 @@ def add_stock(request):
     else:
         form = AddStockForm()
     return render(request, 'stance/add_stock.html', {'form': form})
+
+def about(request):
+    return render(request, 'stance/about.html')

@@ -150,3 +150,13 @@ li {
 .loss {
    background-color: #e89d7f;
 }
+
+/* ABOUT STYLES ================================= */
+.about-us {
+   display: flex;
+   justify-content: space-between;
+}
+
+.about-us .text {
+   padding-left: 10px;
+}
