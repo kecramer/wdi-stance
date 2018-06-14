@@ -15,4 +15,11 @@
 {% endfor %}
 </ul>
 
+<h3>Add Stock</h3>
+<form method="POST" class="add_stock-form">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <button type="submit" class="save btn btn-default">Add</button>
+</form>
+
 {% endblock %}
