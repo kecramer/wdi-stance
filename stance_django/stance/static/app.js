@@ -78,6 +78,9 @@ $(document).ready(function (){
       return;
    }
 
+   $('.sortable').sortable()
+   $('.sortable').disableSelection()
+
    let stocks_list = $('#stock_list').eq(0).text().substring(0, $('#stock_list').eq(0).text().length-1)
 
    $('.ticker_data_set').on('click', (e) => {

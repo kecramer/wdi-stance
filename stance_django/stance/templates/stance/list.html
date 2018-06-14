@@ -3,7 +3,7 @@
 {% block aside %}
 <h3>Stocks</h3>
 <p id="stock_list">{%for stock in stocks %}{{ stock.symbol }},{% endfor %}</p>
-<ul>
+<ul class="sortable">
 {% for stock in stocks %}
 <li>
    <div class="ticker_data_set" data-stock-symbol="{{ stock.symbol }}">
