@@ -1,0 +1,119 @@
+
+
+/* BASE STYLES ================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Encode Sans', sans-serif; */
+}
+
+h1 {
+   font-family: 'Comfortaa', cursive;
+   font-size: 4em;
+   text-transform: uppercase;
+}
+
+h3 {
+   padding: 1em 0;
+}
+
+/* NAV and FOOTER STYLES ================================ */
+
+a {
+   text-decoration: none;
+}
+
+nav, footer {
+   background-color: #343a40;
+   line-height: 2em;
+   /* color: white; */
+}
+
+.stn-logo {
+   font-family: 'Comfortaa', cursive;
+   font-weight: 800;
+   color: white;
+   font-size: 2em;
+   text-transform: uppercase;
+}
+
+/* .stn-logo:hover {
+   color: #a3cd72;
+} */
+
+.stn-link {
+    margin-left: .6em;
+}
+
+footer {
+   padding: 1em;
+   text-align: center;
+   color: rgba(222, 222, 222, .4);
+}
+
+/* MAIN STYLES ================================ */
+
+main {
+   width: 100%;
+   min-height: 75vh;
+   background-color: #aaa;
+}
+
+.stn-flex {
+   display: flex;
+   flex-direction: row;
+   background-color: #dedede;
+}
+
+.stn-col {
+   width: 100%;
+   margin-top: 1em;
+   margin-bottom: 1em;
+   padding: 1em;
+   /* background-color:#dedede; */
+   justify-content: center;
+}
+
+/* FORMS STYLES ================================ */
+
+input {
+    display: block;
+    margin: 5px 0 20px 0;
+    padding: 9px;
+    border: solid 1px black;
+    width: 100%;
+    background: whitesmoke;
+}
+
+input[type=submit] {
+    width: auto;
+    padding: 9px 15px;
+    background-color: #fefefe;
+    border: 0;
+    font-size: 14px;
+    color: #fff;
+}
+
+button {
+   padding: .5em 1em;
+   border-radius: .8em;
+   background-color: #cdcdcd;
+   border: 2px solid #a8a8a8;
+}
+
+.btn-grn {
+   background-color: #b9d170;
+   border: 2px solid #85877b;
+   color: #000000;
+}
+
+.btn-red {
+   background-color: #e88761;
+   border: 2px solid #8d7771;
+   color: #000000;
+}

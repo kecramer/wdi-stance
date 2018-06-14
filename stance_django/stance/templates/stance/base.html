@@ -6,31 +6,61 @@
    <head>
       <meta charset="utf-8">
          <title>Stance</title>
+         <link href="https://fonts.googleapis.com/css?family=Comfortaa|Encode+Sans" rel="stylesheet">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
          <link rel="stylesheet" href="{% static 'style.css' %}">
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
          <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
          <script src="http://d3js.org/d3.v5.js"></script>
          <script src="{% static 'app.js' %}" charset="utf-8" defer></script>
    </head>
    <body>
       <header>
-         <h1><a href="{% url 'home' %}">Stance</a></h1>
-         <a href="#">About</a>
-         <a href="{% url 'login_user' %}">Login</a>
-         <a href="{% url 'logout_user' %}">Log Out</a>
-         <a href="{% url 'signup_user' %}">Sign Up</a>
+         <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="nav-link stn-logo" href="{% url 'home' %}">Stance</a>
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="#">About</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="order-0 ml-auto">
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'login_user' %}">Log In</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'logout_user' %}">Log Out</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'signup_user' %}">Sign Up</a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
       </header>
 
-      <main>
-         {% include "stance/graph.html" %}
-      </main>
+      <div class="stn-flex">
+         <div class="stn-col">
+            <main>
+               {% include "stance/graph.html" %}
+            </main>
+         </div>
+         <div class="stn-col">
+            <aside>
+               {% block aside %}
+               {% endblock %}
+            </aside>
+         </div>
+      </div>
 
-      <aside>
-         {% block aside %}
-         {% endblock %}
-      </aside>
-
-      <footer> Stance &copy; 2018, all rights reserved
-      </footer>
+      <footer><small>Stance &copy; 2018. all rights reserved.</small></footer>
 
    </body>
 </html>
