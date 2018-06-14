@@ -139,6 +139,14 @@ li {
    text-align: center;
 }
 
+.pctChange::after {
+   content: '%';
+}
+
+.curPrice::before {
+   content: '$';
+}
+
 #stock_list {
    display: none;
 }
