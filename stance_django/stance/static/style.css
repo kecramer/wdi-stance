@@ -117,3 +117,36 @@ button {
    border: 2px solid #8d7771;
    color: #000000;
 }
+
+/* STOCK TICKER DATA STYLES ================================= */
+
+li {
+   list-style-type: none;
+}
+
+.ticker_info {
+   display: inline-block;
+   width: 30%;
+   border-radius: 6px;
+}
+
+.ticker_data_set {
+   display: flex;
+   justify-content: space-between;
+   padding: 5px 10px 5px 10px;
+   margin-bottom: 10px;
+   border: 1px solid black;
+   text-align: center;
+}
+
+#stock_list {
+   display: none;
+}
+
+.gain {
+   background-color: #99e88d;
+}
+
+.loss {
+   background-color: #e89d7f;
+}

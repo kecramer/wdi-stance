@@ -65,3 +65,33 @@ $.ajax({
          .attr("d", line);
    }
 });
+
+$(document).ready(function (){
+   if ($("#stock_list").length == 0 && $("stock_list").text().length > 0) {
+      return;
+   }
+
+   let stocks_list = $('#stock_list').eq(0).text().substring(0, $('#stock_list').eq(0).text().length-1)
+
+   $.ajax({
+      method: 'GET',
+      url: `https://api.iextrading.com/1.0/stock/market/batch?types=quote&symbols=${stocks_list}`,
+      success: function(resp){
+         for (let symbol in resp) {
+            if (resp.hasOwnProperty(symbol)) {
+               let stockDiv = $(`*[data-stock-symbol="${resp[symbol].quote.symbol}"]`)
+               let curPrice = stockDiv.children(`.curPrice`)
+               let pctChange = stockDiv.children(`.pctChange`)
+               curPrice.text(resp[symbol].quote.latestPrice)
+               pctChange.text(resp[symbol].quote.changePercent)
+               if (resp[symbol].quote.changePercent >= 0) {
+                  pctChange.addClass("gain")
+               } else {
+                  pctChange.addClass("loss")
+               }
+            }
+         }
+      }
+   })
+
+})

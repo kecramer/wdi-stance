@@ -3,6 +3,7 @@ from .forms import LoginForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -36,3 +37,8 @@ def signup_user(request):
 def logout_user(request):
     logout(request)
     return redirect('stance/home.html')
+
+@login_required
+def all_stocks(request):
+    stocks = request.user.stock_set.all()
+    return render(request, 'stance/list.html', {'stocks': stocks})

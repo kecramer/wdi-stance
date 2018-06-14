@@ -1,0 +1,18 @@
+{% extends 'stance/base.html' %}
+
+{% block aside %}
+<h3>Stocks</h3>
+<p id="stock_list">{%for stock in stocks %}{{ stock.symbol }},{% endfor %}</p>
+<ul>
+{% for stock in stocks %}
+<li>
+   <div class="ticker_data_set" data-stock-symbol="{{ stock.symbol }}">
+      <span class="ticker_info symbol"> {{ stock.symbol }}</span>
+      <span class="ticker_info curPrice">$366.15 </span>
+      <span class="ticker_info pctChange">-0.6%</span>
+    </div>
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
