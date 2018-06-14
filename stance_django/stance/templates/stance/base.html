@@ -33,15 +33,18 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                <ul class="navbar-nav ml-auto">
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'logout_user' %}">Log Out</a>
+                  </li>
+                  {% else %}
                   <li class="nav-item">
                      <a class="nav-link stn-link" href="{% url 'login_user' %}">Log In</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link stn-link" href="{% url 'logout_user' %}">Log Out</a>
-                  </li>
-                  <li class="nav-item">
                      <a class="nav-link stn-link" href="{% url 'signup_user' %}">Sign Up</a>
                   </li>
+                  {% endif %}
                </ul>
             </div>
          </nav>
