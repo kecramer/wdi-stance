@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm
+from .forms import LoginForm, AddStockForm
+from .models import Stock
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -42,3 +43,16 @@ def logout_user(request):
 def all_stocks(request):
     stocks = request.user.stock_set.all()
     return render(request, 'stance/list.html', {'stocks': stocks})
+
+def add_stock(request):
+    if request.method == 'POST':
+        stock = request.POST['stock']
+        try:
+            db_stock = Stock.objects.get(symbol=stock)
+        except Exception as e:
+            db_stock = Stock.objects.create(symbol=stock)
+        db_stock.users.add(request.user)
+        return redirect('all_stocks')
+    else:
+        form = AddStockForm()
+    return render(request, 'stance/add_stock.html', {'form': form})
