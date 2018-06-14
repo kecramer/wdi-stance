@@ -7,9 +7,10 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Encode Sans', sans-serif; */
+   margin: 0;
+   padding: 0;
+   font-family: 'Encode Sans', sans-serif;
+   box-sizing: border-box;
 }
 
 h1 {
@@ -29,9 +30,13 @@ a {
 }
 
 nav, footer {
-   background-color: #343a40;
+   background-color: steelblue;
    line-height: 2em;
    /* color: white; */
+}
+
+nav a, nav div ul li a {
+   transition: .3s all ease-in-out;
 }
 
 .stn-logo {
@@ -42,9 +47,9 @@ nav, footer {
    text-transform: uppercase;
 }
 
-/* .stn-logo:hover {
-   color: #a3cd72;
-} */
+.stn-logo:hover {
+   color: rgba(255,255,255,.75);
+}
 
 .stn-link {
     margin-left: .6em;
@@ -61,7 +66,9 @@ footer {
 main {
    width: 100%;
    min-height: 75vh;
-   background-color: #aaa;
+   border: 1px solid #aaa;
+   background-color: #eaeaea;
+   border-radius: 10px;
 }
 
 .stn-flex {
@@ -101,9 +108,15 @@ input[type=submit] {
 
 button {
    padding: .5em 1em;
-   border-radius: .8em;
-   background-color: #cdcdcd;
-   border: 2px solid #a8a8a8;
+   border-radius: 5px;
+   background-color: steelblue;
+   color: white;
+   border: 2px solid #28578e;
+   transition: .3s all ease-in-out;
+}
+
+button:hover {
+   background-color: #265c89;
 }
 
 .btn-grn {
@@ -120,6 +133,15 @@ button {
 
 /* STOCK TICKER DATA STYLES ================================= */
 
+input {
+   border-radius: 5px;
+   border-color: #aaa;
+}
+
+ul {
+   padding: 0;
+}
+
 li {
    list-style-type: none;
 }
@@ -135,8 +157,11 @@ li {
    justify-content: space-between;
    padding: 5px 10px 5px 10px;
    margin-bottom: 10px;
-   border: 1px solid black;
+   border: 1px solid #aaa;
    text-align: center;
+   border-radius: 5px;
+   background-color: #eaeaea;
+   box-sizing: border-box;
 }
 
 #stock_list {
@@ -149,6 +174,11 @@ li {
 
 .loss {
    background-color: #e89d7f;
+}
+
+.displayed {
+   border: 2px solid steelblue;
+   line-height: calc(1.5em - 2px);
 }
 
 /* ABOUT STYLES ================================= */
