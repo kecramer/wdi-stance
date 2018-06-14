@@ -1,0 +1,10 @@
+{% extends 'stance/base.html' %}
+
+{% block aside %}
+<h3>Add Stock</h3>
+<form method="POST" class="add_stock-form">
+   {% csrf_token %}
+   {{ form.as_p }}
+</form>
+
+{% endblock %}

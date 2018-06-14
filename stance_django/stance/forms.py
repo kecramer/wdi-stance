@@ -9,3 +9,6 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password')
+
+class AddStockForm(forms.Form):
+    stock = CharField(max_length=10)
