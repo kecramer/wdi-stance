@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
+    if request.user.is_authenticated:
+        return redirect('all_stocks')
     return render(request, 'stance/home.html')
 
 def login_user(request):

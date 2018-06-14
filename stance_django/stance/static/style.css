@@ -151,6 +151,10 @@ li {
    background-color: #e89d7f;
 }
 
+.displayed {
+   border: 2px solid steelblue;
+}
+
 /* ABOUT STYLES ================================= */
 .about-us {
    display: flex;

@@ -85,6 +85,8 @@ $(document).ready(function (){
 
    $('.ticker_data_set').on('click', (e) => {
       renderGraph($(e.currentTarget).data('stock-symbol'), date);
+      $('.ticker_data_set').removeClass('displayed')
+      $(e.currentTarget).addClass('displayed');
    });
 
    $.ajax({
