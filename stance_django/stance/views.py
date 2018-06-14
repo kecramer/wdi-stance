@@ -41,8 +41,17 @@ def logout_user(request):
 
 @login_required
 def all_stocks(request):
+    if request.method == 'POST':
+        stock = request.POST['stock']
+        try:
+            db_stock = Stock.objects.get(symbol=stock)
+        except Exception as e:
+            db_stock = Stock.objects.create(symbol=stock)
+        db_stock.users.add(request.user)
+        return redirect('all_stocks')
     stocks = request.user.stock_set.all()
-    return render(request, 'stance/list.html', {'stocks': stocks})
+    form = AddStockForm()
+    return render(request, 'stance/list.html', {'stocks': stocks, 'form': form})
 
 def add_stock(request):
     if request.method == 'POST':
