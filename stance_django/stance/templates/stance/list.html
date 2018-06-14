@@ -1,0 +1,11 @@
+{% extends 'stance/base.html' %}
+
+{% block aside %}
+<h3>Stocks</h3>
+<ul>
+{% for stock in stocks %}
+<li> {{ stock.symbol }} </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
