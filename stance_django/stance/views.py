@@ -16,7 +16,7 @@ def login_user(request):
         raw_password = request.POST['password']
         user = authenticate(username=username, password=raw_password)
         login(request, user)
-        return redirect('home')
+        return redirect('all_stocks')
     else:
         form = LoginForm()
     return render(request, 'stance/login.html', {'form': form})
