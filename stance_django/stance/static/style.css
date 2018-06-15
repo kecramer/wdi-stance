@@ -196,6 +196,14 @@ li {
    box-sizing: border-box;
 }
 
+.pctChange::after {
+   content: '%';
+}
+
+.curPrice::before {
+   content: '$';
+}
+
 #stock_list {
    display: none;
 }
