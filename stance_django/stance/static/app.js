@@ -1,6 +1,7 @@
 const IEX_API = 'https://api.iextrading.com/1.0/';
 let stock_sym = 'aapl',
-    date = '20180614',
+    today = new Date(),
+    date = '' + today.getFullYear() + (today.getMonth() < 10 ? '0' : '') + (today.getMonth() + 1) + (today.getDate() < 10 ? '0' : '') + today.getDate(),
     graph_data = null;
 
 const getGraph = (symbol, date) => {
@@ -10,6 +11,9 @@ const getGraph = (symbol, date) => {
       success: (resp) => {
          date_formatted = date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
          for(let i = 0; i < resp.length; i++) {
+            if(resp[i].marketAverage <= 0) {
+              resp.splice(i, 1);
+           }
             resp[i].minute = new Date(`${date_formatted}T${resp[i].minute}`)
             resp[i].marketAverage = +resp[i].marketAverage
          }
