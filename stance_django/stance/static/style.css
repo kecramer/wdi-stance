@@ -77,8 +77,17 @@ main {
    background-color: #dedede;
 }
 
-.stn-col {
-   width: 100%;
+.stn-col-60 {
+   width: 60%;
+   margin-top: 1em;
+   margin-bottom: 1em;
+   padding: 1em;
+   /* background-color:#dedede; */
+   justify-content: center;
+}
+
+.stn-col-40 {
+   width: 40%;
    margin-top: 1em;
    margin-bottom: 1em;
    padding: 1em;
@@ -140,27 +149,11 @@ button:hover {
    line-height: 1em;
 }
 
-.btn-grn {
-   background-color: #b9d170;
-   border: 2px solid #85877b;
-   color: #000000;
-}
-
-.btn-red {
-   background-color: #e88761;
-   border: 2px solid #8d7771;
-   color: #000000;
-}
-
 .adjust-chart {
    display: inline-block;
    margin-left: 20px;
    padding-top: 10px;
    color: steelblue;
-}
-
-.adjust-chart.selected {
-   text-decoration: underline;
 }
 
 /* STOCK TICKER DATA STYLES ================================= */
@@ -196,14 +189,6 @@ li {
    box-sizing: border-box;
 }
 
-.pctChange::after {
-   content: '%';
-}
-
-.curPrice::before {
-   content: '$';
-}
-
 #stock_list {
    display: none;
 }
@@ -215,6 +200,15 @@ li {
 .loss {
    background-color: #e89d7f;
 }
+
+.pctChange::after {
+   content: '%';
+}
+
+.curPrice::before {
+   content: '$';
+}
+
 
 .displayed {
    border: 2px solid steelblue;
@@ -248,12 +242,16 @@ li {
 }
 
 /* ABOUT STYLES ================================= */
-@media screen and (max-width: 800px){
+@media screen and (max-width: 950px){
    .stn-flex{
       flex-direction: column-reverse;
    }
 
    h1 {
       display: none;
+   }
+
+   .stn-col-60, .stn-col-40 {
+      width: 100%;
    }
 }
