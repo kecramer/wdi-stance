@@ -112,7 +112,7 @@ $(document).ready(function (){
                let curPrice = stockDiv.children(`.curPrice`)
                let pctChange = stockDiv.children(`.pctChange`)
                curPrice.text(resp[symbol].quote.latestPrice)
-               pctChange.text(resp[symbol].quote.changePercent)
+               pctChange.text(resp[symbol].quote.changePercent * 100)
                if (resp[symbol].quote.changePercent >= 0) {
                   pctChange.addClass("gain")
                } else {
