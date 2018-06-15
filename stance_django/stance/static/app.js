@@ -1,8 +1,9 @@
 const IEX_API = 'https://api.iextrading.com/1.0/';
 let stock_sym = 'aapl',
-    date = '20180614';
+    date = '20180614',
+    graph_data = null;
 
-const renderGraph = (symbol, date) => {
+const getGraph = (symbol, date) => {
    $.ajax({
       method: 'GET',
       url: IEX_API + `stock/${symbol}/chart/date/${date}`,
@@ -12,67 +13,71 @@ const renderGraph = (symbol, date) => {
             resp[i].minute = new Date(`${date_formatted}T${resp[i].minute}`)
             resp[i].marketAverage = +resp[i].marketAverage
          }
-
-         const WIDTH = 1000,
-               HEIGHT = 600,
-               MARGINS = {
-                  top: 20,
-                  right: 20,
-                  bottom: 20,
-                  left: 50
-               };
-
-         let svg = d3.select('svg')
-            .attr('width', WIDTH)
-            .attr('height', HEIGHT);
-
-         svg.selectAll('*')
-            .remove();
-
-         var x = d3.scaleTime().rangeRound([0, WIDTH]);
-         var y = d3.scaleLinear().rangeRound([HEIGHT - MARGINS.top - MARGINS.bottom, 0]);
-
-         var line = d3.line()
-            .x(function(d) { return x(+d.minute)})
-            .y(function(d) { return y(+d.marketAverage)})
-            x.domain(d3.extent(resp, function(d) { return +d.minute }));
-            y.domain(d3.extent(resp, function(d) { return +d.marketAverage }));
-
-         var g = svg.append("g")
-            .attr("transform",
-               "translate(" + MARGINS.left + "," + MARGINS.top + ")" //Margin left, Margin top
-            );
-
-         g.append("g")
-            .attr("transform", "translate(0," + (HEIGHT - MARGINS.top - MARGINS.bottom) + ")")
-            .call(d3.axisBottom(x))
-            .select(".domain")
-            .remove();
-
-         g.append("g")
-            .call(d3.axisLeft(y))
-            .append("text")
-            .attr("fill", "#000")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", "0.71em")
-            .attr("text-anchor", "end")
-            .text("Price ($)");
-
-         g.append("path")
-            .datum(resp)
-            .attr("fill", "none")
-            .attr("stroke", "steelblue")
-            .attr("stroke-linejoin", "round")
-            .attr("stroke-linecap", "round")
-            .attr("stroke-width", 1.5)
-            .attr("d", line);
+         graph_data = resp;
+         renderGraph(graph_data);
       }
    });
 }
 
+const renderGraph = (data) => {
+   const WIDTH = $(window).width() / (100 / 60),
+         HEIGHT = 600,
+         MARGINS = {
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 50
+         };
+
+   let svg = d3.select('svg')
+      .attr('width', WIDTH)
+      .attr('height', HEIGHT);
+
+   svg.selectAll('*')
+      .remove();
+
+   var x = d3.scaleTime().rangeRound([0, WIDTH]);
+   var y = d3.scaleLinear().rangeRound([HEIGHT - MARGINS.top - MARGINS.bottom, 0]);
+
+   var line = d3.line()
+      .x(function(d) { return x(+d.minute)})
+      .y(function(d) { return y(+d.marketAverage)})
+      x.domain(d3.extent(data, function(d) { return +d.minute }));
+      y.domain(d3.extent(data, function(d) { return +d.marketAverage }));
+
+   var g = svg.append("g")
+      .attr("transform",
+         "translate(" + MARGINS.left + "," + MARGINS.top + ")" //Margin left, Margin top
+      );
+
+   g.append("g")
+      .attr("transform", "translate(0," + (HEIGHT - MARGINS.top - MARGINS.bottom) + ")")
+      .call(d3.axisBottom(x))
+      .select(".domain")
+      .remove();
+
+   g.append("g")
+      .call(d3.axisLeft(y))
+      .append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Price ($)");
+
+   g.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", 1.5)
+      .attr("d", line);
+}
+
 $(document).ready(function (){
-   renderGraph(stock_sym, date);
+   getGraph(stock_sym, date);
 
    if ($("#stock_list").length == 0 && $("stock_list").text().length > 0) {
       return;
@@ -84,7 +89,7 @@ $(document).ready(function (){
    let stocks_list = $('#stock_list').eq(0).text().substring(0, $('#stock_list').eq(0).text().length-1)
 
    $('.ticker_data_set').on('click', (e) => {
-      renderGraph($(e.currentTarget).data('stock-symbol'), date);
+      getGraph($(e.currentTarget).data('stock-symbol'), date);
       $('.ticker_data_set').removeClass('displayed')
       $(e.currentTarget).addClass('displayed');
    });
@@ -110,4 +115,7 @@ $(document).ready(function (){
       }
    })
 
+   $(window).on('resize', (e) => {
+      renderGraph(graph_data);
+   })
 })
