@@ -20,7 +20,7 @@ const getGraph = (symbol, date) => {
 }
 
 const renderGraph = (data) => {
-   const WIDTH = $(window).width() / 2,
+   const WIDTH = $(window).width() / (100 / 60),
          HEIGHT = 600,
          MARGINS = {
             top: 20,
