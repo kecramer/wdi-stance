@@ -207,3 +207,14 @@ li {
 .sign-up ul, .helptext {
    display: none;
 }
+
+/* ABOUT STYLES ================================= */
+@media screen and (max-width: 800px){
+   .stn-flex{
+      flex-direction: column-reverse;
+   }
+
+   h1 {
+      display: none;
+   }
+}
