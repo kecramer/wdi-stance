@@ -76,3 +76,9 @@ def add_stock(request):
 
 def about(request):
     return render(request, 'stance/about.html')
+
+@login_required
+def stock_delete(request, symbol):
+    stock = Stock.objects.get(symbol=symbol)
+    stock.users.remove(request.user)
+    return redirect('all_stocks')
