@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseNotFound
 from .forms import LoginForm, AddStockForm
 from .models import Stock
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+import requests
 
 # Create your views here.
 def home(request):
@@ -48,7 +50,11 @@ def all_stocks(request):
         try:
             db_stock = Stock.objects.get(symbol=stock)
         except Exception as e:
-            db_stock = Stock.objects.create(symbol=stock)
+            r = requests.get('https://api.iextrading.com/1.0/stock/' + stock + '/company')
+            if r.status_code == 200:
+                db_stock = Stock.objects.create(symbol=stock)
+            else:
+                return redirect('all_stocks')
         db_stock.users.add(request.user)
         return redirect('all_stocks')
     stocks = request.user.stock_set.all()
