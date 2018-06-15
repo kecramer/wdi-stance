@@ -152,6 +152,17 @@ button:hover {
    color: #000000;
 }
 
+.adjust-chart {
+   display: inline-block;
+   margin-left: 20px;
+   padding-top: 10px;
+   color: steelblue;
+}
+
+.adjust-chart.selected {
+   text-decoration: underline;
+}
+
 /* STOCK TICKER DATA STYLES ================================= */
 
 input {

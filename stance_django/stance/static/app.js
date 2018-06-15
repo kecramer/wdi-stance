@@ -2,22 +2,24 @@ const IEX_API = 'https://api.iextrading.com/1.0/';
 let stock_sym = 'aapl',
     today = new Date(),
     date = '' + today.getFullYear() + (today.getMonth() < 10 ? '0' : '') + (today.getMonth() + 1) + (today.getDate() < 10 ? '0' : '') + today.getDate(),
-    graph_data = null;
+    graph_data = [];
 
-const getGraph = (symbol, date) => {
+const getGraph = (symbol, date, url, value, time) => {
    $.ajax({
       method: 'GET',
-      url: IEX_API + `stock/${symbol}/chart/date/${date}`,
+      url: IEX_API + url,
       success: (resp) => {
+         graph_data = [];
          date_formatted = date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
          for(let i = 0; i < resp.length; i++) {
             if(resp[i].marketAverage <= 0) {
               resp.splice(i, 1);
-           }
-            resp[i].minute = new Date(`${date_formatted}T${resp[i].minute}`)
-            resp[i].marketAverage = +resp[i].marketAverage
+            }
+            data_point = {time: (time === 'minute' ? new Date(`${date_formatted}T${resp[i][time]}`) : new Date(`${resp[i][time]}`)),
+                          value: +resp[i][value]
+                         }
+            graph_data.push(data_point);
          }
-         graph_data = resp;
          renderGraph(graph_data);
       }
    });
@@ -48,10 +50,10 @@ const renderGraph = (data) => {
    var y = d3.scaleLinear().rangeRound([HEIGHT - MARGINS.top - MARGINS.bottom, 0]);
 
    var line = d3.line()
-      .x(function(d) { return x(+d.minute)})
-      .y(function(d) { return y(+d.marketAverage)})
-      x.domain(d3.extent(data, function(d) { return +d.minute }));
-      y.domain(d3.extent(data, function(d) { return +d.marketAverage }));
+      .x(function(d) { return x(+d.time)})
+      .y(function(d) { return y(+d.value)})
+      x.domain(d3.extent(data, function(d) { return +d.time }));
+      y.domain(d3.extent(data, function(d) { return +d.value }));
 
    var g = svg.append("g")
       .attr("transform",
@@ -85,7 +87,7 @@ const renderGraph = (data) => {
 }
 
 $(document).ready(function (){
-   getGraph(stock_sym, date);
+   getGraph(stock_sym, date, `stock/${stock_sym}/chart/date/${date}`, 'marketAverage', 'minute');
 
    if ($("#stock_list").length == 0 && $("stock_list").text().length > 0) {
       return;
@@ -97,10 +99,18 @@ $(document).ready(function (){
    let stocks_list = $('#stock_list').eq(0).text().substring(0, $('#stock_list').eq(0).text().length-1)
 
    $('.ticker_data_set').on('click', (e) => {
-      getGraph($(e.currentTarget).data('stock-symbol'), date);
+      let stock_sym = $(e.currentTarget).data('stock-symbol')
+      getGraph($(e.currentTarget).data('stock-symbol'), date, `stock/${$(e.currentTarget).data('stock-symbol')}/chart/date/${date}`, 'marketAverage', 'minute');
       $('.ticker_data_set').removeClass('displayed')
       $(e.currentTarget).addClass('displayed');
    });
+
+   $('.adjust-chart').on('click', (e) => {
+      let timeframe = $(e.currentTarget).text()
+      getGraph(stock_sym, date, `stock/${stock_sym}/chart/${timeframe}/${date}`, 'close', 'date')
+   })
+
+   // https://api.iextrading.com/1.0/stock/aapl/chart/3m
 
    $.ajax({
       method: 'GET',
