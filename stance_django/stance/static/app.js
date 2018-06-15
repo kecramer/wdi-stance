@@ -99,7 +99,7 @@ $(document).ready(function (){
    let stocks_list = $('#stock_list').eq(0).text().substring(0, $('#stock_list').eq(0).text().length-1)
 
    $('.ticker_data_set').on('click', (e) => {
-      let stock_sym = $(e.currentTarget).data('stock-symbol')
+      stock_sym = $(e.currentTarget).data('stock-symbol')
       getGraph($(e.currentTarget).data('stock-symbol'), date, `stock/${$(e.currentTarget).data('stock-symbol')}/chart/date/${date}`, 'marketAverage', 'minute');
       $('.ticker_data_set').removeClass('displayed')
       $(e.currentTarget).addClass('displayed');
