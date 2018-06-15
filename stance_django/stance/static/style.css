@@ -86,6 +86,7 @@ main {
    justify-content: center;
 }
 
+
 /* FORMS STYLES ================================ */
 
 input {
@@ -199,4 +200,31 @@ li {
 
 .about-us .text {
    padding-left: 10px;
+}
+
+.btn-sign-up {
+   margin-top: .5em;
+   font-size: 1.5em;
+   width: 100%;
+   text-transform: uppercase;
+   /* padding: 1em; */
+}
+
+.btn-sign-up:hover {
+   cursor: pointer;
+}
+
+.sign-up ul, .helptext {
+   display: none;
+}
+
+/* ABOUT STYLES ================================= */
+@media screen and (max-width: 800px){
+   .stn-flex{
+      flex-direction: column-reverse;
+   }
+
+   h1 {
+      display: none;
+   }
 }
