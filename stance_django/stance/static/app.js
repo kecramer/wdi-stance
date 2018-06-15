@@ -26,7 +26,7 @@ const getGraph = (symbol, date, url, value, time) => {
 }
 
 const renderGraph = (data) => {
-   let width = $(window).width() / (100/60);
+   let width = $(window).width() / (100/56);
    if ($(window).width() <= 800){
       width = $(window).width() - 32;
    }
