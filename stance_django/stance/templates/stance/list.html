@@ -8,8 +8,8 @@
 <li>
    <div class="ticker_data_set" data-stock-symbol="{{ stock.symbol }}">
       <span class="ticker_info symbol"> {{ stock.symbol }}</span>
-      <span class="ticker_info curPrice">$366.15 </span>
-      <span class="ticker_info pctChange">-0.6%</span>
+      <span class="ticker_info curPrice"></span>
+      <span class="ticker_info pctChange"></span>
       <a href="{% url 'stock_delete' symbol=stock.symbol %}"><img class="btn-delete" src="/static/delete.png"></a>
     </div>
 </li>
