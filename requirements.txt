@@ -1,4 +1,9 @@
 jedi==0.12.0
 parso==0.2.1
-psycopg2==2.7.4
 pyreadline==2.1
+Django==2.0.5
+psycopg2==2.7.4
+pytz==2017.2
+django-heroku==0.3.1
+gunicorn==19.8.1
+requests==2.19.1
