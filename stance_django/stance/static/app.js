@@ -1,5 +1,5 @@
 const IEX_API = 'https://api.iextrading.com/1.0/';
-let stock_sym = 'aapl',
+let stock_sym = 'dia',
     today = new Date(),
     date = '' + today.getFullYear() + (today.getMonth() < 10 ? '0' : '') + (today.getMonth() + 1) + (today.getDate() < 10 ? '0' : '') + today.getDate(),
     graph_data = [];
@@ -64,7 +64,7 @@ const renderGraph = (data) => {
          "translate(" + MARGINS.left + "," + MARGINS.top + ")" //Margin left, Margin top
       );
 
-   var div = d3.select("body").append("div")
+   var div = d3.select("main").append("div")
       .attr("class", "tooltip")
       .style("opacity", 0);
 
@@ -90,7 +90,7 @@ const renderGraph = (data) => {
       .attr("stroke", "steelblue")
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
-      .attr("stroke-width", 1.5)
+      .attr("stroke-width", 2.0)
       .attr("d", line)
       .on("mouseover", function(d) {
          div.transition()
@@ -123,11 +123,14 @@ $(document).ready(function (){
       stock_sym = $(e.currentTarget).data('stock-symbol')
       getGraph($(e.currentTarget).data('stock-symbol'), date, `stock/${$(e.currentTarget).data('stock-symbol')}/chart/date/${date}`, 'marketAverage', 'minute');
       $('.ticker_data_set').removeClass('displayed')
+      $('.adjust-chart').removeClass('timeframeChosen')
       $(e.currentTarget).addClass('displayed');
    });
 
    $('.adjust-chart').on('click', (e) => {
       let timeframe = $(e.currentTarget).text()
+      $('.adjust-chart').removeClass('timeframeChosen')
+      $(e.currentTarget).addClass('timeframeChosen');
       if(timeframe == '1d') {
          getGraph(stock_sym, date, `stock/${stock_sym}/chart/${timeframe}/${date}`, 'marketAverage', 'minute')
       } else {
