@@ -128,7 +128,11 @@ $(document).ready(function (){
 
    $('.adjust-chart').on('click', (e) => {
       let timeframe = $(e.currentTarget).text()
-      getGraph(stock_sym, date, `stock/${stock_sym}/chart/${timeframe}/${date}`, 'close', 'date')
+      if(timeframe == '1d') {
+         getGraph(stock_sym, date, `stock/${stock_sym}/chart/${timeframe}/${date}`, 'marketAverage', 'minute')
+      } else {
+         getGraph(stock_sym, date, `stock/${stock_sym}/chart/${timeframe}/${date}`, 'close', 'date')
+      }
    })
 
    // https://api.iextrading.com/1.0/stock/aapl/chart/3m
@@ -142,8 +146,8 @@ $(document).ready(function (){
                let stockDiv = $(`*[data-stock-symbol="${resp[symbol].quote.symbol}"]`)
                let curPrice = stockDiv.children(`.curPrice`)
                let pctChange = stockDiv.children(`.pctChange`)
-               curPrice.text(resp[symbol].quote.latestPrice)
-               pctChange.text(resp[symbol].quote.changePercent * 100)
+               curPrice.text((resp[symbol].quote.latestPrice).toFixed(2))
+               pctChange.text((resp[symbol].quote.changePercent * 100).toFixed(2))
                if (resp[symbol].quote.changePercent >= 0) {
                   pctChange.addClass("gain")
                } else {
