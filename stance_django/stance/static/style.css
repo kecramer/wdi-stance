@@ -159,10 +159,6 @@ button:hover {
    color: steelblue;
 }
 
-.adjust-chart.selected {
-   text-decoration: underline;
-}
-
 /* STOCK TICKER DATA STYLES ================================= */
 
 input {
@@ -219,6 +215,21 @@ li {
 .displayed {
    border: 2px solid steelblue;
    line-height: calc(1.5em - 2px);
+}
+
+div.tooltip {
+   position: absolute;
+   text-align: center;
+   width: 60px;
+   height: 21px;
+   padding: 2px;
+   font-family: 'Encode Sans', sans-serif;
+   font-size: 12px;
+   background-color: steelblue;
+   color: white;
+   border: 0px;
+   border-radius: 5px;
+   pointer-events: none;
 }
 
 /* ABOUT STYLES ================================= */
