@@ -8,7 +8,7 @@ Stance's mission is to deliver up-to-the-minute stock price and chart informatio
 
 ## Find Us On Heroku!
 
-Stance is hosted on Heroku at http://lit-meadow-62962.herokuapp.com/
+Stance is hosted on Heroku at http://pure-cliffs-70526.herokuapp.com/
 
 ## Technologies and Libraries
 <ul>
