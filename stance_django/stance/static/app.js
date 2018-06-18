@@ -26,9 +26,11 @@ const getGraph = (symbol, date, url, value, time) => {
    });
 }
 
+
+
 const renderGraph = (data) => {
    let width = $(window).width() / (100/56);
-   if ($(window).width() <= 800){
+   if ($(window).width() <= 950){
       width = $(window).width() - 32;
    }
    const WIDTH = width,
@@ -56,10 +58,15 @@ const renderGraph = (data) => {
       x.domain(d3.extent(data, function(d) { return +d.time }));
       y.domain(d3.extent(data, function(d) { return +d.value }));
 
+
    var g = svg.append("g")
       .attr("transform",
          "translate(" + MARGINS.left + "," + MARGINS.top + ")" //Margin left, Margin top
       );
+
+   var div = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
 
    g.append("g")
       .attr("transform", "translate(0," + (HEIGHT - MARGINS.top - MARGINS.bottom) + ")")
@@ -84,7 +91,20 @@ const renderGraph = (data) => {
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
       .attr("stroke-width", 1.5)
-      .attr("d", line);
+      .attr("d", line)
+      .on("mouseover", function(d) {
+         div.transition()
+            .duration(200)
+            .style("opacity", .9)
+         div .html('$' + (y.invert(d3.mouse(this)[1])).toFixed(2))
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+         })
+      .on("mouseout", function(d) {
+         div.transition()
+            .duration(500)
+            .style("opacity", 0);
+      });
 }
 
 $(document).ready(function (){
