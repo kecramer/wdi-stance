@@ -12,7 +12,7 @@ import requests
 def home(request):
     if request.user.is_authenticated:
         return redirect('all_stocks')
-    return render(request, 'home')
+    return render(request, 'stance/home.html')
 
 def login_user(request):
     if request.method == 'POST':
@@ -23,7 +23,7 @@ def login_user(request):
         return redirect('all_stocks')
     else:
         form = LoginForm()
-    return render(request, 'login_user', {'form': form})
+    return render(request, 'stance/login.html', {'form': form})
 
 def signup_user(request):
     if request.method == 'POST':
@@ -34,14 +34,14 @@ def signup_user(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('stance/home.html')
     else:
         form = UserCreationForm()
-    return render(request, 'signup_user', {'form': form})
+    return render(request, 'stance/signup.html', {'form': form})
 
 def logout_user(request):
     logout(request)
-    return redirect('home')
+    return redirect('stance/home.html')
 
 @login_required
 def all_stocks(request):
@@ -59,7 +59,7 @@ def all_stocks(request):
         return redirect('all_stocks')
     stocks = request.user.stock_set.all()
     form = AddStockForm()
-    return render(request, 'all_stocks', {'stocks': stocks, 'form': form})
+    return render(request, 'stance/list.html', {'stocks': stocks, 'form': form})
 
 def add_stock(request):
     if request.method == 'POST':
@@ -72,10 +72,10 @@ def add_stock(request):
         return redirect('all_stocks')
     else:
         form = AddStockForm()
-    return render(request, 'add_stock', {'form': form})
+    return render(request, 'stance/add_stock.html', {'form': form})
 
 def about(request):
-    return render(request, 'about')
+    return render(request, 'stance/about.html')
 
 @login_required
 def stock_delete(request, symbol):
