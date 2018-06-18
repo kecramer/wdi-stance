@@ -1,1 +1,1 @@
-web: gunicorn stance.wsgi
+web: gunicorn stance_django.wsgi
