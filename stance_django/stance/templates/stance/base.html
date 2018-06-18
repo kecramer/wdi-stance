@@ -6,7 +6,7 @@
    <head>
       <meta charset="utf-8">
          <title>Stance</title>
-         <link href="https://fonts.googleapis.com/css?family=Comfortaa|Encode+Sans" rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css?family=Comfortaa|Encode+Sans|Gidugu" rel="stylesheet">
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
          <link rel="stylesheet" href="{% static 'style.css' %}">
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
@@ -51,20 +51,22 @@
       </header>
 
       <div class="stn-flex">
-         <div class="stn-col">
+         <div class="stn-col-60">
             <main>
-               <span class="adjust-chart">1d</span>
-               <span class="adjust-chart">5d</span>
-               <span class="adjust-chart">1m</span>
-               <span class="adjust-chart">3m</span>
-               <span class="adjust-chart">6m</span>
-               <span class="adjust-chart">1y</span>
-               <span class="adjust-chart">2y</span>
-               <span class="adjust-chart">5y</span>
+               <div class="timeline">
+                  <span class="adjust-chart">1d</span>
+                  <span class="adjust-chart">5d</span>
+                  <span class="adjust-chart">1m</span>
+                  <span class="adjust-chart">3m</span>
+                  <span class="adjust-chart">6m</span>
+                  <span class="adjust-chart">1y</span>
+                  <span class="adjust-chart">2y</span>
+                  <span class="adjust-chart">5y</span>
+               </div>
                {% include "stance/graph.html" %}
             </main>
          </div>
-         <div class="stn-col">
+         <div class="stn-col-40">
             <aside>
                {% block aside %}
                {% endblock %}

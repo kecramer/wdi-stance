@@ -12,7 +12,7 @@ const getGraph = (symbol, date, url, value, time) => {
          graph_data = [];
          date_formatted = date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
          for(let i = 0; i < resp.length; i++) {
-            if(resp[i].marketAverage <= 0) {
+            if(resp[i] === undefined || resp[i].marketAverage <= 0) {
               resp.splice(i, 1);
               continue;
             }
@@ -29,7 +29,7 @@ const getGraph = (symbol, date, url, value, time) => {
 
 
 const renderGraph = (data) => {
-   let width = $(window).width() / (100/60);
+   let width = $(window).width() / (100/56);
    if ($(window).width() <= 950){
       width = $(window).width() - 32;
    }

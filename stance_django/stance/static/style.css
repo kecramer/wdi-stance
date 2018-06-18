@@ -1,5 +1,4 @@
 
-
 /* BASE STYLES ================================ */
 
 * {
@@ -14,7 +13,8 @@ body {
 }
 
 h1 {
-   font-family: 'Comfortaa', cursive;
+   /* font-family: 'Comfortaa', sans-serif; */
+   font-family: 'Gidugu', sans-serif;
    font-size: 4em;
    text-transform: uppercase;
 }
@@ -32,7 +32,6 @@ a {
 nav, footer {
    background-color: steelblue;
    line-height: 2em;
-   /* color: white; */
 }
 
 nav a, nav div ul li a {
@@ -40,10 +39,10 @@ nav a, nav div ul li a {
 }
 
 .stn-logo {
-   font-family: 'Comfortaa', cursive;
-   font-weight: 800;
+   font-family: 'Gidugu', sans-serif;
+   font-weight: 400;
    color: white;
-   font-size: 2em;
+   font-size: 4em;
    text-transform: uppercase;
 }
 
@@ -77,15 +76,26 @@ main {
    background-color: #dedede;
 }
 
-.stn-col {
-   width: 100%;
+.stn-col-60 {
+   width: 60%;
    margin-top: 1em;
    margin-bottom: 1em;
    padding: 1em;
-   /* background-color:#dedede; */
    justify-content: center;
 }
 
+.stn-col-40 {
+   width: 40%;
+   margin-top: 1em;
+   margin-bottom: 1em;
+   padding: 1em;
+   justify-content: center;
+}
+
+.timeline {
+   text-align: right;
+   margin-right: 2em;
+}
 
 /* FORMS STYLES ================================ */
 
@@ -140,18 +150,6 @@ button:hover {
    line-height: 1em;
 }
 
-.btn-grn {
-   background-color: #b9d170;
-   border: 2px solid #85877b;
-   color: #000000;
-}
-
-.btn-red {
-   background-color: #e88761;
-   border: 2px solid #8d7771;
-   color: #000000;
-}
-
 .adjust-chart {
    display: inline-block;
    margin-left: 20px;
@@ -159,6 +157,21 @@ button:hover {
    color: steelblue;
 }
 
+.btn-sign-up {
+   margin-top: .5em;
+   font-size: 1.5em;
+   width: 100%;
+   text-transform: uppercase;
+   /* padding: 1em; */
+}
+
+.btn-sign-up:hover {
+   cursor: pointer;
+}
+
+.sign-up ul, .helptext {
+   display: none;
+}
 /* STOCK TICKER DATA STYLES ================================= */
 
 input {
@@ -192,24 +205,25 @@ li {
    box-sizing: border-box;
 }
 
+#stock_list {
+   display: none;
+}
+
+.gain {
+   /* background-color: #99e88d; */
+   background-color: #96e885;
+}
+
+.loss {
+   background-color: #e89d7f;
+}
+
 .pctChange::after {
    content: '%';
 }
 
 .curPrice::before {
    content: '$';
-}
-
-#stock_list {
-   display: none;
-}
-
-.gain {
-   background-color: #99e88d;
-}
-
-.loss {
-   background-color: #e89d7f;
 }
 
 .displayed {
@@ -233,38 +247,134 @@ div.tooltip {
 }
 
 /* ABOUT STYLES ================================= */
-.about-us {
+
+.about-row{
    display: flex;
    justify-content: space-between;
 }
 
-.about-us .text {
-   padding-left: 10px;
+.about-text {
+   padding: 0 10px;
+
 }
 
-.btn-sign-up {
-   margin-top: .5em;
-   font-size: 1.5em;
-   width: 100%;
+.about-us img {
+   /* width: 100px; */
+   height: 100px;
+   border-radius: 50%;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.icon {
+  flex-basis: 130px;
+}
+
+.icon svg {
+  stroke: #fff;
+  stroke-width: 1px;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  -webkit-animation: line 6s linear forwards;
+          animation: line 6s linear forwards;
+}
+
+@-webkit-keyframes line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.about-welcome {
+   width: 500px;
+}
+
+.about-aside {
+   overflow-y: auto;
+   height: 74vh;
+}
+
+.about-chart {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   height: 510px;
+}
+
+.chart-growth {
+   display: inline-block;
+   width: 122px;
+   margin-left: -2em;
+   left: 0;
+   transform: rotate(-90deg);
+   opacity: 0;
+}
+
+.chart-time {
+   text-align: right;
+   margin-right: 2em;
+   align-items: flex-end;
+   opacity: 0;
+}
+
+.visible {
+   opacity: 1;
+}
+
+.graph-name {
+   font-weight: 400;
+   margin-top: .2em;
+   margin-bottom: -.5em;
+   font-family: 'Gidugu', sans-serif;
    text-transform: uppercase;
-   /* padding: 1em; */
+   font-size: 5em;
 }
 
-.btn-sign-up:hover {
-   cursor: pointer;
+.k-color, .k-color:hover {
+   color: #ff5a1c;
 }
 
-.sign-up ul, .helptext {
-   display: none;
+.a-color, .a-color:hover {
+   color: #64d84b;
 }
 
-/* ABOUT STYLES ================================= */
-@media screen and (max-width: 800px){
+.s-color, .s-color:hover {
+   /* color: #a67de8; */
+   color: #9f71e9;
+}
+
+/* RESPONSIVE STYLES ================================= */
+
+@media screen and (max-width: 950px){
    .stn-flex{
       flex-direction: column-reverse;
    }
 
    h1 {
       display: none;
+   }
+
+   .stn-col-60, .stn-col-40 {
+      width: 100%;
+   }
+
+   .about-aside {
+      overflow-y: auto;
+      height: auto;
    }
 }

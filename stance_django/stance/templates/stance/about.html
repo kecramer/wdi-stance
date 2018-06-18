@@ -1,24 +1,112 @@
-{% extends 'stance/base.html' %}
 
-{% block aside %}
-<h2> ABOUT </h2>
+{% load staticfiles %}
 
-<h3>Kevin</h3>
-<div class="about-us">
-   <img src="http://via.placeholder.com/300" class="portrait">
-   <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+         <title>Stance</title>
+         <link href="https://fonts.googleapis.com/css?family=Comfortaa|Encode+Sans|Gidugu" rel="stylesheet">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link rel="stylesheet" href="{% static 'style.css' %}">
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+         <!-- <script src="http://d3js.org/d3.v5.js"></script> -->
+         <script src="{% static 'about.js' %}" charset="utf-8" defer></script>
+   </head>
+   <body>
+      <header>
+         <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="nav-link stn-logo" href="{% url 'home' %}">Stance</a>
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'about' %}">About</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="order-0 ml-auto">
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+               <ul class="navbar-nav ml-auto">
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'logout_user' %}">Log Out</a>
+                  </li>
+                  {% else %}
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'login_user' %}">Log In</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link stn-link" href="{% url 'signup_user' %}">Sign Up</a>
+                  </li>
+                  {% endif %}
+               </ul>
+            </div>
+         </nav>
+      </header>
 
-<h3>Aaron</h3>
-<div class="about-us">
-   <img src="http://via.placeholder.com/300" class="portrait">
-   <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
+      <div class="stn-flex">
+         <div class="stn-col-60">
+            <main>
+               <div class="about-chart">
+                  <span class="chart-growth"> Growth </span>
+                  <ul class="icons">
+                      <li class="icon">
+                        <div class="about-welcome">
+                           <h2> MEET THE CREATORS </h2>
+                           <hr />
+                           <h4> With our collective efforts, we built a easy to use stock visualization app</h4>
+                           <br />
+                           <p> Follow us and see our web development skills sharpen over time</p>
+                        </div>
+                        <!-- Animation goes here -->
+                      </li>
+                  </ul>
+                  <span></span>
+                  <span class="chart-time"> Over Time </span>
+               </div>
+            </main>
+         </div>
+         <div class="stn-col-40">
+            <aside>
+               <div class="about-aside">
+                  <div class="about-us" data-us="kevin">
+                     <h3>Kevin</h3>
+                     <div class="about-row about-detail">
+                        <img src="http://via.placeholder.com/300" class="portrait">
+                        <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                     </div>
+                     <hr />
+                  </div>
 
-<h3>Sharon</h3>
-<div class="about-us">
-   <img src="http://via.placeholder.com/300" class="portrait">
-   <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
+                  <div class="about-us" data-us="aaron">
+                     <h3>Aaron</h3>
+                     <div class="about-row about-detail">
+                        <img src="http://via.placeholder.com/300" class="portrait">
+                        <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                     </div>
+                     <hr />
+                  </div>
 
-{% endblock %}
+                  <div class="about-us" data-us="sharon">
+                     <h3>Sharon</h3>
+                     <div class="about-row about-detail">
+                        <img src="/static/img/profile_SP.jpg" class="portrait">
+                        <p class="about-text">Front end developer: created wire-frames, layout, and UI features for the STANCE app. Although her path may not always be straight, she will find a way to reach her goals. <a class="s-color" href="https://github.com/oxleberry">Github Portfolio</a></p>
+                     </div>
+                  </div>
+               </div>
+
+            </aside>
+         </div>
+      </div>
+
+      <footer><small>Stance &copy; 2018. all rights reserved.</small></footer>
+
+   </body>
+</html>
