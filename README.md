@@ -23,15 +23,15 @@ We used the following libraries and external data sources for Stance:
 
 ## User Stories
 
-![Stance User Stories](stance_django/stance/static/img/user-stories.png)
+![Stance User Stories](stance/static/img/user-stories.png)
 
 ## Wireframes
 
-![Stance Wireframe 1](stance_django/stance/static/img/stance_sketch_01.jpg)
+![Stance Wireframe 1](stance/static/img/stance_sketch_01.jpg)
 
-![Stance Wireframe 2](stance_django/stance/static/img/stance_sketch_02.jpg)
+![Stance Wireframe 2](stance/static/img/stance_sketch_02.jpg)
 
-![Stance Wireframe 3](stance_django/stance/static/img/stance_sketch_03.jpg)
+![Stance Wireframe 3](stance/static/img/stance_sketch_03.jpg)
 
 ## Future Plans
 
